@@ -1,0 +1,23 @@
+{
+  "name": "tdd-conway",
+  "version": "1.0.0",
+  "description": "https://fr.wikipedia.org/wiki/Suite_de_Conway",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/VivienAdnot/tdd-conway.git"
+  },
+  "author": "Vivien Adnot",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/VivienAdnot/tdd-conway/issues"
+  },
+  "homepage": "https://github.com/VivienAdnot/tdd-conway#readme",
+  "dependencies": {},
+  "devDependencies": {
+    "jest": "^24.8.0"
+  }
+}
