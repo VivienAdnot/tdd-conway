@@ -17,15 +17,31 @@ const conway = () => {
   };
 
   const drawLineChunks = (compressedLine, chunks) => {
-    if (compressedLine.length > 1 && compressedLine[0] !== compressedLine[1]) {
-      return drawLineChunks(
-        compressedLine.substring(1),
-        chunks +
-          countConsecutiveLineNumbers(compressedLine.substring(0, 1)) +
-          SPACE_SEPARATOR
-      );
+    if (compressedLine.length === 0) return chunks.trim();
+
+    const nextDistinctNumberIndex = _indexOfNextDistinctNumber(
+      compressedLine,
+      0
+    );
+
+    return drawLineChunks(
+      compressedLine.substring(nextDistinctNumberIndex + 1),
+      chunks +
+        countConsecutiveLineNumbers(
+          compressedLine.substring(0, nextDistinctNumberIndex + 1)
+        ) +
+        SPACE_SEPARATOR
+    );
+  };
+
+  const _indexOfNextDistinctNumber = (compressedLine, index) => {
+    if (
+      compressedLine.length === 1 ||
+      compressedLine[0] !== compressedLine[1]
+    ) {
+      return index;
     }
-    return chunks + countConsecutiveLineNumbers(compressedLine);
+    return _indexOfNextDistinctNumber(compressedLine.substring(1), index + 1);
   };
 
   const countConsecutiveLineNumbers = compressedLine => {
@@ -38,6 +54,7 @@ const conway = () => {
 
   return {
     draw,
+    _indexOfNextDistinctNumber,
     _removeLineSpaces
   };
 };
