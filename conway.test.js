@@ -2,41 +2,7 @@ const createConway = require("./conway");
 
 let conway;
 
-describe("substring", () => {
-  it("substring(1)", () => {
-    const fn = str => str.substring(1);
-    return expect(fn("boom")).toEqual("oom");
-  });
-
-  it("substring(0, 1)", () => {
-    const fn = str => str.substring(0, 1);
-    return expect(fn("boom")).toEqual("b");
-  });
-
-  it("substring(-1)", () => {
-    const fn = str => str.substring(0, str.length - 1);
-    return expect(fn("boom")).toEqual("boo");
-  });
-});
-
-describe("slice", () => {
-  it("slice(1)", () => {
-    const fn = str => str.slice(1);
-    return expect(fn("boom")).toEqual("oom");
-  });
-
-  it("slice(0, 1)", () => {
-    const fn = str => str.slice(0, 1);
-    return expect(fn("boom")).toEqual("b");
-  });
-
-  it("slice(-1)", () => {
-    const fn = str => str.slice(0, -1);
-    return expect(fn("boom")).toEqual("boo");
-  });
-});
-
-describe.only("should draw next line of conway suite", () => {
+describe("should draw next line of conway suite", () => {
   beforeAll(() => {
     conway = createConway();
   });
