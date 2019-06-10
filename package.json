@@ -2,7 +2,7 @@
   "name": "tdd-conway",
   "version": "1.0.0",
   "description": "https://fr.wikipedia.org/wiki/Suite_de_Conway",
-  "main": "index.js",
+  "main": "cli.js",
   "scripts": {
     "test": "jest"
   },
@@ -16,7 +16,9 @@
     "url": "https://github.com/VivienAdnot/tdd-conway/issues"
   },
   "homepage": "https://github.com/VivienAdnot/tdd-conway#readme",
-  "dependencies": {},
+  "dependencies": {
+    "yargs": "^13.2.4"
+  },
   "devDependencies": {
     "jest": "^24.8.0"
   }
