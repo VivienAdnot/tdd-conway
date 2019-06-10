@@ -3,12 +3,20 @@ const conway = () => {
   const SPACE_SEPARATOR = " ";
   const EMPTY_STRING = "";
 
-  const draw = line => {
-    return drawSourceLine(line) + drawNextLine(line);
+  const draw = (line, depth) => {
+    return drawSourceLine(line) + drawSuite(line, depth);
   };
 
   const drawSourceLine = line => {
     return line + LINE_JUMP;
+  };
+
+  const drawSuite = (line, depth) => {
+    if (depth === 1) {
+      return drawNextLine(line);
+    }
+    const nextLine = drawNextLine(line);
+    return nextLine + LINE_JUMP + drawSuite(nextLine + LINE_JUMP, depth - 1);
   };
 
   const drawNextLine = line => {
@@ -26,22 +34,33 @@ const conway = () => {
 
     return drawLineChunks(
       compressedLine.substring(nextDistinctNumberIndex + 1),
-      chunks +
-        countConsecutiveLineNumbers(
-          compressedLine.substring(0, nextDistinctNumberIndex + 1)
-        ) +
+      accumulateChunk(compressedLine, chunks, nextDistinctNumberIndex) +
         SPACE_SEPARATOR
     );
   };
 
+  const accumulateChunk = (compressedLine, chunks, nextDistinctNumberIndex) =>
+    chunks +
+    countConsecutiveLineNumbers(
+      compressedLine.substring(0, nextDistinctNumberIndex + 1)
+    );
+
   const _indexOfNextDistinctNumber = (compressedLine, index) => {
     if (
-      compressedLine.length === 1 ||
-      compressedLine[0] !== compressedLine[1]
+      hasOnlyOneNumber(compressedLine) ||
+      isNextNumberDistinct(compressedLine)
     ) {
       return index;
     }
     return _indexOfNextDistinctNumber(compressedLine.substring(1), index + 1);
+  };
+
+  const hasOnlyOneNumber = compressedLine => {
+    return compressedLine.length === 1;
+  };
+
+  const isNextNumberDistinct = compressedLine => {
+    return compressedLine[0] !== compressedLine[1];
   };
 
   const countConsecutiveLineNumbers = compressedLine => {

@@ -68,35 +68,55 @@ describe.only("should draw next line of conway suite", () => {
     });
   });
 
-  it("1", () => {
-    expect(conway.draw("1")).toEqual("1\n1 1");
+  describe("depth 1", () => {
+    it("1", () => {
+      expect(conway.draw("1", 1)).toEqual("1\n1 1");
+    });
+
+    it("2", () => {
+      expect(conway.draw("2", 1)).toEqual("2\n1 2");
+    });
+
+    it("2 2", () => {
+      expect(conway.draw("2 2", 1)).toEqual("2 2\n2 2");
+    });
+
+    it("2 1", () => {
+      expect(conway.draw("2 1", 1)).toEqual("2 1\n1 2 1 1");
+    });
+
+    it("2 1 3", () => {
+      expect(conway.draw("2 1 3", 1)).toEqual("2 1 3\n1 2 1 1 1 3");
+    });
+
+    it("2 1 1 1", () => {
+      expect(conway.draw("2 1 1 1", 1)).toEqual("2 1 1 1\n1 2 3 1");
+    });
+
+    it("2 3 3 1", () => {
+      expect(conway.draw("2 3 3 1", 1)).toEqual("2 3 3 1\n1 2 2 3 1 1");
+    });
+
+    it("1 1 1 1", () => {
+      expect(conway.draw("1 1 1 1", 1)).toEqual("1 1 1 1\n4 1");
+    });
   });
 
-  it("2", () => {
-    expect(conway.draw("2")).toEqual("2\n1 2");
+  describe("depth 2", () => {
+    it("1", () => {
+      expect(conway.draw("1", 2)).toEqual("1\n1 1\n2 1");
+    });
   });
 
-  it("2 2", () => {
-    expect(conway.draw("2 2")).toEqual("2 2\n2 2");
+  describe("depth 3", () => {
+    it("1", () => {
+      expect(conway.draw("1", 3)).toEqual("1\n1 1\n2 1\n1 2 1 1");
+    });
   });
 
-  it("2 1", () => {
-    expect(conway.draw("2 1")).toEqual("2 1\n1 2 1 1");
-  });
-
-  it("2 1 3", () => {
-    expect(conway.draw("2 1 3")).toEqual("2 1 3\n1 2 1 1 1 3");
-  });
-
-  it("2 1 1 1", () => {
-    expect(conway.draw("2 1 1 1")).toEqual("2 1 1 1\n1 2 3 1");
-  });
-
-  it.only("2 3 3 1", () => {
-    expect(conway.draw("2 3 3 1")).toEqual("2 3 3 1\n1 2 2 3 1 1");
-  });
-
-  it("1 1 1 1", () => {
-    expect(conway.draw("1 1 1 1")).toEqual("1 1 1 1\n4 1");
+  describe("depth 4", () => {
+    it("1", () => {
+      expect(conway.draw("1", 4)).toEqual("1\n1 1\n2 1\n1 2 1 1\n1 1 1 2 2 1");
+    });
   });
 });
